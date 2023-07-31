@@ -14,18 +14,18 @@ QuantumStatePreparation/
 │   ├── fx_equals_x.py  
 │   ├── fx_equals_x2.py  
 │   └── ...  
-│
+│  
 ├── modelling/  
 │   ├── __init__.py  
 │   ├── black_box_without_arithmetic.py  
 │   ├── gaussian1D.py  
 │   └── ...  
-│
+│  
 ├── results/  
 │   ├── output.png  
 │   ├── output.csv  
 │   └── ...  
-│  
+│   
 ├── utils/  
 │   ├── __init__.py  
 │   ├── arithmetics.py  
