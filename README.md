@@ -1,5 +1,5 @@
 # QuantumStatePreparation
-Inequality test-based technique for Quantum State Preparation
+Inequality test-based techniques for Quantum State Preparation
 
 ## Set up
 
@@ -8,7 +8,9 @@ We recommend to follow the installation guides from [pyLIQTR](https://github.com
 ## Folder Organization
 
 QuantumStatePreparation/
+
 │
+
 ├── experimental/
 │   ├── __init__.py
 │   ├── fx_equals_x.py
