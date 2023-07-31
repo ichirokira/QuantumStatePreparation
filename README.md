@@ -12,26 +12,31 @@ QuantumStatePreparation/
 ├── experimental/
 │   ├── __init__.py
 │   ├── fx_equals_x.py
-│   └── fx_equals_x2.py
+│   ├── fx_equals_x2.py
+│   └── ...
 │
 ├── modelling/
 │   ├── __init__.py
 │   ├── black_box_without_arithmetic.py
-│   └── gaussian1D.py
+│   ├── gaussian1D.py
+│   └── ...
 │
 ├── results/
 │   ├── output.png
-│   └── outptu.csvs
+│   ├── outptu.csv
+│   └── ...
 │
 ├── utils/
 │   ├── __init__.py
 │   ├── arithmetics.py
 │   ├── helpers.py
 |   ├── inequality_test.py
-|   └── resource_estimation.py
+|   ├── resource_estimation.py
+│   └── ...
 │
 ├── __init__.py
-└── README.md
+├── README.md
+└── ...
 
 ## Testing
 
@@ -40,7 +45,7 @@ python -m experimental.name_test --model regular_aa --figure output.png --rs_dir
 ```
 
 
-Example: f(x) = x
+**Example: f(x) = x**
 
 ```
 # BlackBox model with regular amplitude amplification
