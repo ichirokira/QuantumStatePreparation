@@ -25,7 +25,7 @@ QuantumStatePreparation/
 │   ├── output.png  
 │   ├── outptu.csv  
 │   └── ...
-│
+│  
 ├── utils/  
 │   ├── __init__.py  
 │   ├── arithmetics.py  
