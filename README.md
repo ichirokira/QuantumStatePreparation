@@ -7,38 +7,36 @@ We recommend to follow the installation guides from [pyLIQTR](https://github.com
 
 ## Folder Organization
 
-QuantumStatePreparation/
-
+QuantumStatePreparation/  
+│  
+├── experimental/  
+│   ├── __init__.py  
+│   ├── fx_equals_x.py  
+│   ├── fx_equals_x2.py  
+│   └── ...  
 │
-
-├── experimental/
-│   ├── __init__.py
-│   ├── fx_equals_x.py
-│   ├── fx_equals_x2.py
+├── modelling/  
+│   ├── __init__.py  
+│   ├── black_box_without_arithmetic.py  
+│   ├── gaussian1D.py  
+│   └── ...  
+│
+├── results/  
+│   ├── output.png  
+│   ├── outptu.csv  
 │   └── ...
 │
-├── modelling/
-│   ├── __init__.py
-│   ├── black_box_without_arithmetic.py
-│   ├── gaussian1D.py
-│   └── ...
-│
-├── results/
-│   ├── output.png
-│   ├── outptu.csv
-│   └── ...
-│
-├── utils/
-│   ├── __init__.py
-│   ├── arithmetics.py
-│   ├── helpers.py
-|   ├── inequality_test.py
-|   ├── resource_estimation.py
-│   └── ...
-│
-├── __init__.py
-├── README.md
-└── ...
+├── utils/  
+│   ├── __init__.py  
+│   ├── arithmetics.py  
+│   ├── helpers.py  
+|   ├── inequality_test.py  
+|   ├── resource_estimation.py  
+│   └── ...  
+│  
+├── __init__.py  
+├── README.md  
+└── ...  
 
 ## Testing
 
