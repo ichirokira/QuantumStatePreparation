@@ -28,7 +28,7 @@ class Gaussian1DineqBased:
         Generates output state vector 
     
     post_process_cricuit() -> cirq.Circuit
-        Generates for post measurement process.
+        Generates circuit for post measurement process.
     
   """
   def __init__(self, p: int, m: int, sigma: float, delta: float) -> None:
