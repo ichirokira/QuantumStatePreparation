@@ -23,15 +23,15 @@ QuantumStatePreparation/
 │
 ├── results/  
 │   ├── output.png  
-│   ├── outptu.csv  
-│   └── ...
+│   ├── output.csv  
+│   └── ...  
 │  
 ├── utils/  
 │   ├── __init__.py  
 │   ├── arithmetics.py  
 │   ├── helpers.py  
-|   ├── inequality_test.py  
-|   ├── resource_estimation.py  
+│   ├── inequality_test.py  
+│   ├── resource_estimation.py  
 │   └── ...  
 │  
 ├── __init__.py  
