@@ -61,4 +61,4 @@ python -m experimental.fx_equals_x --model square_root --figure output.png --rs_
 ## Current Support
 The code is based on two main papers using inequality test for state preparation:
 1. [Black-box quantum state preparation without arithmetic](https://arxiv.org/abs/1807.03206)
-2. [Nearly optimal quantum algorithm for generating the ground state of a free quantum field theory](https://arxiv.org/abs/2110.05708)
+2. (**ongoing**)[Nearly optimal quantum algorithm for generating the ground state of a free quantum field theory](https://arxiv.org/abs/2110.05708)
