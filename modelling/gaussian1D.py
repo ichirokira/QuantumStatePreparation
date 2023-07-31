@@ -6,6 +6,31 @@ from utils.helpers import *
 from utils.inequality_test import Comparator
 
 class Gaussian1DineqBased:
+  """
+  Implement inequality test based method for 1D Gaussian State in https://arxiv.org/abs/2110.05708
+  Attributes:
+    -----------
+    p : float
+        working precision
+
+    m : int
+        fixed-point number of representation
+    
+    sigma: float
+        std value of the target gaussian (mean value is set to be 0)
+    
+    delta : float
+        lattice spacing value
+
+  Methods:
+    --------
+    simulate() -> cirq.StateVectorTrialResult
+        Generates output state vector 
+    
+    post_process_cricuit() -> cirq.Circuit
+        Generates for post measurement process.
+    
+  """
   def __init__(self, p: int, m: int, sigma: float, delta: float) -> None:
     """
     Initialize the class with some preparation parameters
@@ -125,7 +150,7 @@ class Gaussian1DineqBased:
 
       return result
 
-  def post_process_cricuit(self):
+  def post_process_cricuit(self) -> cirq.Circuit:
     circuit = cirq.Circuit()
     # COMP(out, ref, flag)
     comparator = Comparator(self.ref_register, self.active_out_register)

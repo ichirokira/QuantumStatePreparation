@@ -39,8 +39,8 @@ def visualize_results(config, input_size, model, output_file="fx_equals_x2.png")
   circuit = model(num_out_qubits=input_size, num_data_qubits=2*input_size+1, black_box=blackbox)
   num_iteration = math.ceil((np.pi/4)*np.sqrt(2**input_size)/np.linalg.norm([x for x in range(0,2**input_size)]))
   print("[INFO] Running the experiment with {} Amplitude Amplification Rounds".format(num_iteration))
-  circuit.run(num_iteration=num_iteration)
-  output = circuit.check_output()
+  circuit.construct_circuit(num_iteration=num_iteration)
+  output = circuit.get_output()
   if config.model == "square_root":
       expected_output = np.arange(0, 2**input_size)/np.linalg.norm(np.arange(0, 2**input_size))
   else:
@@ -75,7 +75,7 @@ def main():
    for n in input_size:
         print("[INFO] Prepare result with:", n)
         state_prep = model(num_out_qubits=n, num_data_qubits=2*n+1, black_box=blackbox)
-        state_prep.run(num_iteration = math.ceil((np.pi/4)*np.sqrt(2**n)/np.linalg.norm([x for x in range(0,2**n)])))
+        state_prep.construct_circuit(num_iteration = math.ceil((np.pi/4)*np.sqrt(2**n)/np.linalg.norm([x for x in range(0,2**n)])))
 
         generate_circuit_stats(state_prep.output_circuit, n, csv_out = config.rs_dir)
    print("[INFO] DONE!!!")

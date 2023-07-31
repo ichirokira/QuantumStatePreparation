@@ -7,6 +7,34 @@ __all__ = ["BlackBoxRegularAA", "BlackBoxObliviousAA", "BlackBoxSquareRoot"]
 class BlackBoxRegularAA:
   """
   Implement inequality test based method in https://arxiv.org/abs/1807.03206 with regular ampltitude amplification technqiues
+
+  Attributes:
+    -----------
+    num_out_qubits : int
+        Number of qubits for output register
+
+    num_data_qubits : int
+        Number of qubits to estimate the output data from the oracle
+    
+    black_box: cirq.Circuit
+        The oracle to generate the output data.
+    
+    input_data : List[float]
+        (Optional) List of amplitudes when black_box is None
+
+  Methods:
+    --------
+    good_state_preparation() -> cirq.Circuit
+        Generates 'good state' cirq.Circuit.
+    
+    amplitude_amplification(num_iteration) -> cirq.Circuit
+        Generates the amplitude amplification circuit based on the 'good' circuit.
+    
+    construct_circuit() -> None
+        Combine good_state_preparation and amplitude_amplification circuit
+
+    get_output() -> List[float]
+        Simulate results and get ampltiudes of the output state 
   """
   def __init__(self, num_out_qubits: int, num_data_qubits: int, input_data: list =None, black_box: cirq.Circuit = None)-> None:
     """
@@ -132,12 +160,12 @@ class BlackBoxRegularAA:
     
     return circ
   
-  def run(self,num_iteration: int) -> None:
+  def construct_circuit(self,num_iteration: int) -> None:
     self.output_circuit = self.amplitude_amplification(num_iteration=num_iteration) # math.floor(np.sqrt(2**self.num_data_qubits))
     # uncompute data
     self.output_circuit.append(self.blackbox, strategy=cirq.InsertStrategy.NEW_THEN_INLINE)
 
-  def check_output(self) -> list:
+  def get_output(self) -> list:
     # measurement
     self.output_circuit.append(cirq.measure(*(self.out+self.ref+[self.flag]), key="result"))
     s = cirq.Simulator()
@@ -160,6 +188,34 @@ class BlackBoxRegularAA:
 class BlackBoxObliviousAA:
   """
   Implement inequality test based method in https://arxiv.org/abs/1807.03206 with oblivious ampltitude amplification technqiues
+
+  Attributes:
+    -----------
+    num_out_qubits : int
+        Number of qubits for output register
+
+    num_data_qubits : int
+        Number of qubits to estimate the output data from the oracle
+    
+    black_box: cirq.Circuit
+        The oracle to generate the output data.
+    
+    input_data : List[float]
+        (Optional) List of amplitudes when black_box is None
+
+  Methods:
+    --------
+    good_state_preparation() -> cirq.Circuit
+        Generates 'good state' cirq.Circuit.
+    
+    amplitude_amplification(num_iteration) -> cirq.Circuit
+        Generates the amplitude amplification circuit based on the 'good' circuit.
+    
+    construct_circuit() -> None
+        Combine good_state_preparation and amplitude_amplification circuit
+
+    get_output() -> List[float]
+        Simulate results and get ampltiudes of the output state 
   """
   def __init__(self, num_out_qubits: int, num_data_qubits: int, input_data: list =None, black_box: cirq.Circuit = None)-> None:
     """
@@ -270,12 +326,12 @@ class BlackBoxObliviousAA:
       circ.append(reflection, strategy=cirq.InsertStrategy.NEW_THEN_INLINE)
     return circ
   
-  def run(self,num_iteration:int) -> None:
+  def construct_circuit(self,num_iteration:int) -> None:
     self.output_circuit = self.amplitude_amplification(num_iteration=num_iteration) # math.floor(np.sqrt(2**self.num_data_qubits))
     # uncompute data
     self.output_circuit.append(self.blackbox, strategy=cirq.InsertStrategy.NEW_THEN_INLINE)
 
-  def check_output(self) -> list:
+  def get_output(self) -> list:
     # measurement
     self.output_circuit.append(cirq.measure(*(self.out+self.ref+[self.flag]), key="result"))
     s = cirq.Simulator()
@@ -297,6 +353,33 @@ class BlackBoxObliviousAA:
 class BlackBoxSquareRoot:
   """
   Implement inequality test based method in https://arxiv.org/abs/1807.03206 with square root amplitudes
+  Attributes:
+    -----------
+    num_out_qubits : int
+        Number of qubits for output register
+
+    num_data_qubits : int
+        Number of qubits to estimate the output data from the oracle
+    
+    black_box: cirq.Circuit
+        The oracle to generate the output data.
+    
+    input_data : List[float]
+        (Optional) List of amplitudes when black_box is None
+
+  Methods:
+    --------
+    good_state_preparation() -> cirq.Circuit
+        Generates 'good state' cirq.Circuit.
+    
+    amplitude_amplification(num_iteration) -> cirq.Circuit
+        Generates the amplitude amplification circuit based on the 'good' circuit.
+    
+    construct_circuit() -> None
+        Combine good_state_preparation and amplitude_amplification circuit
+
+    get_output() -> List[float]
+        Simulate results and get ampltiudes of the output state 
   """
   def __init__(self, num_out_qubits: int, num_data_qubits: int, input_data: list =None, black_box: cirq.Circuit = None)-> None:
     """
@@ -455,7 +538,7 @@ class BlackBoxSquareRoot:
     
     return circ
   
-  def run(self,num_iteration:int) -> None:
+  def construct_circuit(self,num_iteration:int) -> None:
     self.output_circuit = self.amplitude_amplification(num_iteration=num_iteration) # math.floor(np.sqrt(2**self.num_data_qubits))
     #apply inverse unif
     unif_circuit = self.unif()
@@ -463,7 +546,7 @@ class BlackBoxSquareRoot:
     # uncompute data
     self.output_circuit.append(self.blackbox, strategy=cirq.InsertStrategy.NEW_THEN_INLINE)
 
-  def check_output(self) -> list:
+  def get_output(self) -> list:
     # measurement
     self.output_circuit.append(cirq.measure(*(self.out+[self.flag]), key="result"))
     s = cirq.Simulator()
