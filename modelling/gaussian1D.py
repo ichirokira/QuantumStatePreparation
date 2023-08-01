@@ -27,7 +27,7 @@ class Gaussian1DineqBased:
     simulate() -> cirq.StateVectorTrialResult
         Generates output state vector 
     
-    post_process_cricuit() -> cirq.Circuit
+    post_process_circuit() -> cirq.Circuit
         Generates circuit for post measurement process.
     
   """
@@ -150,7 +150,7 @@ class Gaussian1DineqBased:
 
       return result
 
-  def post_process_cricuit(self) -> cirq.Circuit:
+  def post_process_circuit(self) -> cirq.Circuit:
     circuit = cirq.Circuit()
     # COMP(out, ref, flag)
     comparator = Comparator(self.ref_register, self.active_out_register)

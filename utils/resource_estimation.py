@@ -62,6 +62,7 @@ def generate_circuit_stats(circuit: cirq.Circuit, n:int, csv_out='scaling_data.c
     # Decompose circuit:
     decomposed_circuit       = cirq.align_left((qsp_decompose_once(circuit)))
     t_decomp_to_toffoli_time = time.time()
+    
 
 
     if save_circuit:
