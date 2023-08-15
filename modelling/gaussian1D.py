@@ -3,7 +3,7 @@ import cirq
 import numpy as np
 from utils.arithmetics import Multiplier
 from utils.helpers import *
-from utils.inequality_test import Comparator
+from utils.inequality_test import ComparisonOracle
 
 class Gaussian1DineqBased:
   """

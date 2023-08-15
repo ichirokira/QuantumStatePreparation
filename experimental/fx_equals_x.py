@@ -21,7 +21,8 @@ def get_argparse():
     return parser.parse_args()
 
 def blackbox(out_register: list, data_register: list) -> cirq.Circuit:
-  # blackbox for f(x) = x
+  # blackbox unitary |x>|0> -> |x>|f(x)> when f(x) = x
+  # |x> registers are out_register, |0> registers are data_register
   circuit = cirq.Circuit()
 
   for out, data in zip(out_register, data_register):
@@ -67,7 +68,7 @@ def main():
    input_size = [2,4,8,16]
    for n in input_size:
         print("[INFO] Prepare result with:", n)
-        state_prep = model(num_out_qubits=n, num_data_qubits=n, black_box=blackbox)
+        state_prep = model(num_out_qubits=n, num_data_qubits=n, black_box=blackbox) # black_box should be circ.Circuit, here a function?
         state_prep.construct_circuit(num_iteration = math.ceil((np.pi/4)*np.sqrt(2**n)/np.linalg.norm([x for x in range(0,2**n)])))
 
         generate_circuit_stats(state_prep.output_circuit, n, csv_out = config.rs_dir)

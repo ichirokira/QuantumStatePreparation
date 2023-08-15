@@ -1,6 +1,6 @@
 import cirq
 import numpy as np
-from utils.inequality_test import Comparator
+from utils.inequality_test import ComparisonOracle
 
 __all__ = ["BlackBoxRegularAA", "BlackBoxObliviousAA", "BlackBoxSquareRoot"]
 
@@ -57,14 +57,14 @@ class BlackBoxRegularAA:
 
   def good_state_preparation(self,) -> cirq.Circuit:
     """
-    Generate the good state at |0>_ref|0>-flag.
+    Generate the good state at |0>_ref|0>_flag.
     Implement Eq.(7) in the paper 
     """
     circuit = cirq.Circuit()
 
     # intializer
-    for i in range(self.num_out_qubits):
-      circuit.append(cirq.H(self.out[i]))
+    for q in self.out:
+      circuit.append(cirq.H(q))
     if self.blackbox is None:
       # if there is no input blackbox, apply simple basis encoding for input_data
       def ai_to_gate(ai):
@@ -90,25 +90,26 @@ class BlackBoxRegularAA:
       circuit.append(self.blackbox, strategy=cirq.InsertStrategy.NEW_THEN_INLINE)
 
     # initialize ref
-    for i in range(self.num_data_qubits):
-      circuit.append(cirq.H(self.ref[i]))
+    for q in self.ref:
+      circuit.append(cirq.H(q))
     
     # compare ref to data
-    comparator = Comparator(self.ref, self.data)
+    comparator = ComparisonOracle(self.ref, self.data)
     compare_circ = comparator.construct_circuit()
 
+    # copy result from comparator.fin to self.flag
     circuit.append(compare_circ, strategy=cirq.InsertStrategy.NEW_THEN_INLINE)
-    circuit.append(cirq.X(comparator.anc1))
-    circuit.append(cirq.CNOT(comparator.anc1, self.flag))
-    circuit.append(cirq.X(comparator.anc1))
+    circuit.append(cirq.X(comparator.fin))
+    circuit.append(cirq.CNOT(comparator.fin, self.flag))
+    circuit.append(cirq.X(comparator.fin))
 
     # uncompute comparator
     inv_compare = cirq.inverse(compare_circ)
     circuit.append(inv_compare, strategy=cirq.InsertStrategy.NEW_THEN_INLINE)
 
     # unprepare superposition from ref
-    for i in range(self.num_data_qubits):
-      circuit.append(cirq.H(self.ref[i]))
+    for q in self.ref:
+      circuit.append(cirq.H(q))
 
     return circuit
 
@@ -133,15 +134,15 @@ class BlackBoxRegularAA:
       Implement I - 2|0><0| over all qubits
       """
       circ = cirq.Circuit()
-      for i in range(len(qubits)):
-        circ.append(cirq.X(qubits[i]))
+      for q in qubits:
+        circ.append(cirq.X(q))
 
       circ.append(cirq.H(qubits[-1])) # on flag
       circ.append(cirq.XPowGate().controlled(self.num_out_qubits+2*self.num_data_qubits).on(*qubits))
       circ.append(cirq.H(qubits[-1])) # on flag
 
-      for i in range(len(qubits)):
-        circ.append(cirq.X(qubits[i]))
+      for q in qubits:
+        circ.append(cirq.X(q))
       
       return circ
 
