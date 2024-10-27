@@ -14,36 +14,40 @@ pip install git+https://github.com/isi-usc-edu/pyLIQTR
 
 ## Folder Organization
 
-QuantumStatePreparation/  
-│  
-├── experimental/  
-│   ├── __init__.py  
-│   ├── fx_equals_x.py  
-│   ├── fx_equals_x2.py  
-│   └── ...  
-│  
-├── modelling/  
-│   ├── __init__.py  
-│   ├── black_box_without_arithmetic.py  
-│   ├── gaussian1D.py  
-│   └── ...  
-│  
-├── results/  
-│   ├── output.png  
-│   ├── output.csv  
-│   └── ...  
-│   
-├── utils/  
-│   ├── __init__.py  
-│   ├── arithmetics.py  
-│   ├── helpers.py  
-│   ├── inequality_test.py  
-│   ├── resource_estimation.py  
-│   └── ...  
-│  
-├── __init__.py  
-├── README.md  
-└── ...  
+### experimental
+
+* [fx_equals_x.py](.\experimental\fx_equals_x.py)
+* [fx_equals_x2.py](.\experimental\fx_equals_x2.py)
+* [__init__.py](.\experimental\__init__.py)
+
+### modelling
+
+* [black_box_without_arithmetic.py](.\modelling\black_box_without_arithmetic.py)
+* [gaussian1D.py](.\modelling\gaussian1D.py)
+* [__init__.py](.\modelling\__init__.py)
+
+### notebooks
+
+* [EnvelopStateforNonIncrease(Decrease)function.ipynb](.\notebooks\EnvelopStateforNonIncrease(Decrease)function.ipynb)
+
+### results
+
+* [fx_equals_x.csv](.\results\fx_equals_x.csv)
+* [fx_equals_x.png](.\results\fx_equals_x.png)
+* [fx_equals_x2.csv](.\results\fx_equals_x2.csv)
+* [fx_equals_x2.png](.\results\fx_equals_x2.png)
+* [fx_equal_x.csv](.\results\fx_equal_x.csv)
+* [output.csv](.\results\output.csv)
+* [output.png](.\results\output.png)
+
+### utils
+
+* [arithmetics.py](.\utils\arithmetics.py)
+* [helpers.py](.\utils\helpers.py)
+* [inequality_test.py](.\utils\inequality_test.py)
+* [resource_estimation.py](.\utils\resource_estimation.py)
+* [__init__.py](.\utils\__init__.py)
+
 
 ## Testing
 
@@ -68,4 +72,21 @@ python -m experimental.fx_equals_x --model square_root --figure output.png --rs_
 ## Current Support
 The code is based on two main papers using inequality test for state preparation:
 1. [Black-box quantum state preparation without arithmetic](https://arxiv.org/abs/1807.03206)
-2. (**ongoing**)[Nearly optimal quantum algorithm for generating the ground state of a free quantum field theory](https://arxiv.org/abs/2110.05708)
+2. (Ongoing) Our Paper
+
+## Notes
+For verification of the experiments in our paper: 
+1. Check [EnvelopStateforNonIncrease(Decrease)function.ipynb](.\notebooks\EnvelopStateforNonIncrease(Decrease)function.ipynb) for counting number of $T$ gates in preparing envelop state of non-increasing and non-decreasing functions 
+2. Check `qmpa` for counting number of Toffoli gates in multiplication operation.
+
+## Reference
+```
+@misc{robertson_qmpa,
+  author       = {Robertson, Alan},
+  title        = {{QMPA}},
+  year         = {n.d.},
+  note         = {GitHub repository},
+  howpublished = {\url{https://github.com/Alan-Robertson/qmpa}},
+  urldate      = {2024-10-28}
+}
+```
