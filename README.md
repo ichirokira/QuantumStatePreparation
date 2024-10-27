@@ -77,16 +77,18 @@ The code is based on two main papers using inequality test for state preparation
 ## Notes
 For verification of the experiments in our paper: 
 1. Check [EnvelopStateforNonIncrease(Decrease)function.ipynb](.\notebooks\EnvelopStateforNonIncrease(Decrease)function.ipynb) for counting number of $T$ gates in preparing envelop state of non-increasing and non-decreasing functions 
-2. Check `qmpa` for counting number of Toffoli gates in multiplication operation.
+2. Check [qmpa](https://github.com/Alan-Robertson/qmpa) for counting number of Toffoli gates in multiplication operation.
 
-## Reference
+
+
+## Citation
 ```
-@misc{robertson_qmpa,
-  author       = {Robertson, Alan},
-  title        = {{QMPA}},
+@misc{ichirokira_quantumstatepreparation,
+  author       = {Ichirokira},
+  title        = {{Quantum State Preparation}},
   year         = {n.d.},
   note         = {GitHub repository},
-  howpublished = {\url{https://github.com/Alan-Robertson/qmpa}},
+  howpublished = {\url{https://github.com/ichirokira/QuantumStatePreparation}},
   urldate      = {2024-10-28}
 }
 ```
